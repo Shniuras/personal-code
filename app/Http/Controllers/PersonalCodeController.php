@@ -23,6 +23,13 @@ class PersonalCodeController extends Controller
         $this->personalCodeService = $personalCodeService;
     }
 
+    /**
+     * Generates personal code
+     *
+     * @param $birthDate
+     * @param $sex
+     * @return array|JsonResponse
+     */
     public function generate($birthDate, $sex)
     {
         $data = compact('birthDate', 'sex');
@@ -42,6 +49,12 @@ class PersonalCodeController extends Controller
         return compact('codes');
     }
 
+    /**
+     * Checks if personal code is valid
+     *
+     * @param $personalCode
+     * @return JsonResponse
+     */
     public function validation($personalCode)
     {
 

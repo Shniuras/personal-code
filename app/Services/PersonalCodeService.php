@@ -34,8 +34,6 @@ class PersonalCodeService
         } else {
             return false;
         }
-
-
     }
 
     /**
@@ -199,7 +197,13 @@ class PersonalCodeService
         return $codes;
     }
 
-    public function fullYear($first)
+    /**
+     * Return two first digits of a year
+     *
+     * @param $first
+     * @return string
+     */
+    protected function fullYear($first)
     {
         if ($first == 1 || $first == 2){
             return '18';
@@ -212,7 +216,13 @@ class PersonalCodeService
         }
     }
 
-    public function checkingFirstDigit($personalCode)
+    /**
+     * Checks first digit of a personal code
+     *
+     * @param $personalCode
+     * @return bool
+     */
+    protected function checkingFirstDigit($personalCode)
     {
         $first = $personalCode[0];
         if ($first > 0 && $first < 7){
@@ -225,12 +235,15 @@ class PersonalCodeService
         return true;
     }
 
-    public function checkingSecondToNineDigit($personalCode)
+    /**
+     * Checks birth date of a personal code
+     *
+     * @param $personalCode
+     * @return bool
+     */
+    protected function checkingSecondToNineDigit($personalCode)
     {
-        $firstPartOfBirthDate = $personalCode[0];
-        $secondPartOfBirthDate = substr($personalCode, 1, 6);
-
-        $fullBirthDate = $firstPartOfBirthDate . $secondPartOfBirthDate;
+        $fullBirthDate = substr($personalCode, 0, 7);
 
         $data = compact ('fullBirthDate');
 
@@ -244,7 +257,13 @@ class PersonalCodeService
         return true;
     }
 
-    public function checkingLastDigit($personalCode)
+    /**
+     * Checks if last digit is valid
+     *
+     * @param $personalCode
+     * @return bool
+     */
+    protected function checkingLastDigit($personalCode)
     {
         $uncompletedPersonalCode = substr($personalCode, 0,10);
         $last = $personalCode[10];
